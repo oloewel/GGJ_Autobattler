@@ -12,9 +12,11 @@ public class Platzierungen : MonoBehaviour
     private void Awake()
     {
         rend = GetComponent<Renderer>();
+        GameController.Instance.addToScene(this);
+
     }
 
-    private void OnMouseDown() 
+    public void OnMouseDown() 
     {
         if (selected)
         {
@@ -27,5 +29,8 @@ public class Platzierungen : MonoBehaviour
             rend.material.color = selected ? selectedColor : normalColor;
         }
     }
-
+    void OnDestroy()
+    {
+        GameController.Instance.removeFromScene(this);
+    }
 }
