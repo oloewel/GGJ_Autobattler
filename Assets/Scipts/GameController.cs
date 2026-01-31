@@ -7,18 +7,11 @@ public class GameController : MonoBehaviour
     public List<Platzierungen> Platzierungen {get; private set; } = new();
     public List<MaskenButton> MaskenButtons {get; private set; }= new();
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    GameController()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
+        Instance ??= this;
     }
+
     
     public void addToScene<T>(T p)
     {
