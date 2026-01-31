@@ -1,24 +1,48 @@
 using UnityEngine;
 
-/*public interface IState
+public interface IState
 {
     void OnEnter();
     void OnUpdate();
-    void On Init();
     void OnExit();
 }
 
-public abstract class FSM : IState
+public abstract class FSM : MonoBehaviour
 {
-    public IState Current {get; private set; }
+    protected IState Current {get; private set;}
 
-    public void OnEnter(IState state)
+    void Update() => Current?.OnUpdate();
+
+    protected void ChangeState(IState next)
     {
+        if (Current == next) return;
         Current?.OnExit();
-        Current = state;
+        (Current = next).OnEnter();
     }
-    public virtual void OnExit()
+}
+
+class IdleState : IState
+{
+    public void OnEnter()
     {
-        
+        // was passiert wenn man in den Idle wechselt?
     }
-}*/
+
+    public void OnExit()
+    {
+        // was passiert wenn man den Zustand verlässt?
+    }
+
+    public void OnUpdate()
+    {
+        /* Ignored */
+    }
+}
+
+class Player : FSM
+{
+    void idle()
+    {
+        ChangeState(new IdleState());
+    }
+}

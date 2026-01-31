@@ -11,7 +11,7 @@ public class MaskenButton : MonoBehaviour
     {
         button = GetComponent<Button>();
         button.onClick.AddListener(OnClick);
-  
+        GameController.Instance.addToScene(this);
     }
     
 
@@ -27,7 +27,15 @@ public class MaskenButton : MonoBehaviour
         {
             selected = true;
             button.image.color = Color.red;
+            GameController.Instance.Platzierungen.ForEach(e =>
+            {
+               e.OnMouseDown();
+            });
         }
+    }
+    void OnDestroy()
+    {
+        GameController.Instance.removeFromScene(this);
     }
 }
 
