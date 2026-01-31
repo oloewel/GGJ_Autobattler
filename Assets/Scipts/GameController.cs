@@ -6,12 +6,21 @@ public class GameController : MonoBehaviour
     public static GameController Instance {get; private set; }
     public List<Platzierungen> Platzierungen {get; private set; } = new();
     public List<MaskenButton> MaskenButtons {get; private set; }= new();
+    public List<Maske> Masken {get; private set; }= new();
+    public List<Maske> Gegner {get; private set; }= new();
+
+    public GameObject tank;
+    public GameObject kämpfer;
+    public GameObject magier;
 
     GameController()
     {
         Instance ??= this;
     }
-
+    public void Check()
+    {
+        //Überprüfe ob noch Gegner vorhanden sind.
+    }
     
     public void addToScene<T>(T p)
     {
@@ -23,6 +32,17 @@ public class GameController : MonoBehaviour
         {
             MaskenButtons.Add(p as MaskenButton);
         }
+        else if (p is Maske)
+        {
+            if ((p as Maske).isGegner)
+            {
+                Gegner.Add(p as Maske);
+            }
+            else
+            {
+                Masken.Add(p as Maske);
+            }
+        }
     }
     public void removeFromScene<T>(T r)
     {
@@ -33,6 +53,17 @@ public class GameController : MonoBehaviour
         else if (r is MaskenButton)
         {
             MaskenButtons.Remove(r as MaskenButton);
+        }
+        else if (r is Maske)
+        {
+            if ((r as Maske).isGegner)
+            {
+                Gegner.Remove(r as Maske);
+            }
+            {
+                Masken.Remove(r as Maske);
+            }
+            
         }
     }
 }

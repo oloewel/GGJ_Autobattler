@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Renderer))]
 public class Platzierungen : MonoBehaviour
 {
     public bool selected;
@@ -16,18 +17,10 @@ public class Platzierungen : MonoBehaviour
 
     }
 
-    public void OnMouseDown() 
+    public void onSelect(bool value) 
     {
-        if (selected)
-        {
-            selected = false;
-            rend.material.color = selected ? selectedColor : normalColor;
-        }
-        else
-        {
-            selected = true;
-            rend.material.color = selected ? selectedColor : normalColor;
-        }
+        selected = value;
+        rend.material.color = selected ? selectedColor : normalColor;
     }
     void OnDestroy()
     {
