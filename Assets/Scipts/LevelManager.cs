@@ -1,22 +1,23 @@
-using System;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using System.Collections.Generic;
+using System.Collections;
+using Unity.VisualScripting;
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] private int sceneIndex;
-    public void LoadByIndex (int index)
+    public List<GameObject> myList;
+    int currentIndex = 0;
+    public int lp= 0;
+    public void Next()
     {
-        SceneManager.LoadScene(index);
-    }
-
-    public void LoadByName(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
-
-   public void LoadNext()
-    {
-        int current = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(current +1);
+        myList[currentIndex].SetActive(false);
+        if(currentIndex + 1 < myList.Count)
+        {
+            myList[++currentIndex].SetActive(true);
+        } else
+        {    
+            myList[currentIndex = 0].SetActive(true);
+        }  
+        
     }
 }
+
