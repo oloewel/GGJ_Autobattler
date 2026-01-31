@@ -857,7 +857,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 160015193}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 753543689}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: "SelectK\xE4mpfer"
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &160015193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1468,6 +1480,7 @@ GameObject:
   - component: {fileID: 311311522}
   - component: {fileID: 311311521}
   - component: {fileID: 311311520}
+  - component: {fileID: 311311524}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -1593,6 +1606,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 68, y: 270, z: 0}
+--- !u!114 &311311524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311311519}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4c8524a7ac18fc4db349dbbb01ffe84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RaycastClicker
+  cam: {fileID: 0}
+  maxDistance: 200
+  hitLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1001 &322270418
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3140,6 +3170,7 @@ MonoBehaviour:
   tank: {fileID: 8085865887691511601, guid: 8ba56bf82997c9f43a74198f44c1c4de, type: 3}
   "k\xE4mpfer": {fileID: 2201610572986550068, guid: d7238702ad2fdf54abcc037962afb482, type: 3}
   magier: {fileID: 6262902426335162187, guid: b7a0a55851bb6dc4fa162072e16465e3, type: 3}
+  selectedPrefab: {fileID: 0}
 --- !u!4 &753543690
 Transform:
   m_ObjectHideFlags: 0
@@ -7515,7 +7546,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2069495370}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 753543689}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: SelectMagier
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2069495370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7755,7 +7798,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2086869550}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 753543689}
+        m_TargetAssemblyTypeName: GameController, Assembly-CSharp
+        m_MethodName: SelectTank
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2086869550
 MonoBehaviour:
   m_ObjectHideFlags: 0

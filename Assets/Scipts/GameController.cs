@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEditor.PackageManager;
 using UnityEngine;
 
 public class GameController : MonoBehaviour
@@ -12,6 +13,8 @@ public class GameController : MonoBehaviour
     public GameObject tank;
     public GameObject kämpfer;
     public GameObject magier;
+    public GameObject selectedPrefab;
+
 
     GameController()
     {
@@ -21,7 +24,33 @@ public class GameController : MonoBehaviour
     {
         //Überprüfe ob noch Gegner vorhanden sind.
     }
-    
+
+    public void SelectTank()
+    {
+        Instance.selectedPrefab = tank;
+    }
+    public void SelectKämpfer()
+    {
+        Instance.selectedPrefab = kämpfer;
+    }
+    public void SelectMagier()
+    {
+        Instance.selectedPrefab = magier;
+    }
+
+    public Maske Spawn(Transform transform)
+    {
+        if (selectedPrefab == null)
+        {
+            throw new System.Exception("kein Prefab ausgewählt");
+        }
+        Debug.Log("Local; "+ transform.localPosition);
+        Debug.Log("world; "+ transform.position);
+        Debug.Log("Trans; "+ transform);
+        var go = Instantiate(selectedPrefab ,transform.position, Quaternion.Euler(-90f, 180f, 0f));
+        return go.GetComponent<Maske>();
+    }
+
     public void addToScene<T>(T p)
     {
         if(p is Platzierungen)
