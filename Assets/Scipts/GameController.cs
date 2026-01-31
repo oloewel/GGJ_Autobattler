@@ -10,11 +10,13 @@ public class GameController : MonoBehaviour
     public List<Maske> Masken {get; private set; }= new();
     public List<Maske> Gegner {get; private set; }= new();
 
+
     public GameObject tank;
     public GameObject kämpfer;
     public GameObject magier;
     public GameObject selectedPrefab;
-
+    
+    [SerializeField] private float roundTime = 0f;
 
     GameController()
     {
@@ -95,4 +97,18 @@ public class GameController : MonoBehaviour
             
         }
     }
+    void Update()
+    {
+        if (roundTime>0)
+        {
+            //Dinge passieren!
+            
+        } 
+
+
+
+    }
+
+
+
 }
