@@ -22,6 +22,7 @@ public class Platzierungen : MonoBehaviour
         {
             selected = false;
             rend.material.color = selected ? selectedColor : normalColor;
+            
         }
         else
         {
