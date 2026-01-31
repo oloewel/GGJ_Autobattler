@@ -1,8 +1,10 @@
 using UnityEngine;
 
-public interface IState
+/*public interface IState
 {
     void OnEnter();
+    void OnUpdate();
+    void On Init();
     void OnExit();
 }
 
@@ -19,4 +21,4 @@ public abstract class FSM : IState
     {
         
     }
-}
+}*/
