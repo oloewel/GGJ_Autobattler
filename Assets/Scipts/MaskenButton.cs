@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
+[RequireComponent(typeof(Button))]
 public class MaskenButton : MonoBehaviour
 {
     public bool selected;
@@ -18,10 +19,6 @@ public class MaskenButton : MonoBehaviour
     {
         selected = false;
         button.image.color = Color.white;
-        GameController.Instance.Platzierungen.ForEach(e =>
-            {
-               e.OnMouseDown();
-            });
     }
 
 
@@ -30,6 +27,10 @@ public class MaskenButton : MonoBehaviour
         if (selected)
         {
             Disable();
+            GameController.Instance.Platzierungen.ForEach(e =>
+            {
+               e.onSelect(selected);
+            });
         }
         else
         {
@@ -44,7 +45,7 @@ public class MaskenButton : MonoBehaviour
             button.image.color = Color.red;
             GameController.Instance.Platzierungen.ForEach(e =>
             {
-               e.OnMouseDown();
+               e.onSelect(selected);
             });
         }
     }
