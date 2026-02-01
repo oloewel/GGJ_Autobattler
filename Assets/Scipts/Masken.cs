@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 
 public class Maske : MonoBehaviour
@@ -6,36 +7,47 @@ public class Maske : MonoBehaviour
     public int sPS= 10;
     public int geschw = 1;
     public bool isGegner = false;
- 
+    private Animator animator;
+    private bool isDying = false;
+
+
+
     void Awake()
     {
         GameController.Instance.addToScene(this);
+        animator = GetComponent<Animator>();
     }
-    void Attacke()
+    public void Attacke()
     {
-        var A = GameController.Instance.Gegner;
-        if (A.Count>0)
+        var targets = isGegner ? GameController.Instance.Masken : GameController.Instance.Gegner;
+        if(targets.Count > 0) 
         {
-            A[0].Hit(sPS);
+            targets[0].Hit(sPS);
+            animator.SetTrigger("Attacke");
         }
     }
 
 
-    void Hit(int schaden)
+    public void Hit(int schaden)
     {
+        if (isDying) return;
         lP -= schaden;
         if (lP <= 0)
         {
-            Sterben();
+            isDying = true;
+            animator.SetTrigger("Sterben");
         }
     }
 
 
-    void Sterben()
+    public void Sterben()
     {
+
+        Debug.Log("STERBEN!");
         GameController.Instance.Check();
         GameController.Instance.removeFromScene(this);
-        Destroy(this);
+        Destroy(gameObject);
+        
     }
 
 

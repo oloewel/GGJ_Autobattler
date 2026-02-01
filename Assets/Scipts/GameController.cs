@@ -16,16 +16,50 @@ public class GameController : MonoBehaviour
     public GameObject magier;
     public GameObject selectedPrefab;
     
-    [SerializeField] private float roundTime = 0f;
+    private float _delta = 0;
+    private float _time = 0;
+    private bool _roundRunning;
 
-    GameController()
+    public void StartRound()
     {
-        Instance ??= this;
+        if (Masken.Count == 0 || Gegner.Count == 0)
+        {
+            Debug.Log("Runde kann nicht starten: Team oder Gegner leer.");
+            return;
+        }
+        _roundRunning = true;
+        Debug.Log("Runde gestartet!");
     }
+
     public void Check()
     {
-        //Überprüfe ob noch Gegner vorhanden sind.
+        if (Gegner.Count == 0)
+        {
+            _roundRunning = false;
+            Debug.Log("Spieler gewinnen!");
+        }
+        else if (Masken.Count == 0)
+        {
+            _roundRunning = false;
+            Debug.Log("Gegner gewinnen!");
+        }
     }
+
+    private void Awake()
+    {
+        // Falls schon eine Instanz existiert → diese hier zerstören
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+
+        // Optional, falls Szenen gewechselt werden:
+        // DontDestroyOnLoad(gameObject);
+    }
+
 
     public void SelectTank()
     {
@@ -40,16 +74,13 @@ public class GameController : MonoBehaviour
         Instance.selectedPrefab = magier;
     }
 
-    public Maske Spawn(Transform transform)
+    public Maske Spawn(Transform t)
     {
         if (selectedPrefab == null)
         {
             throw new System.Exception("kein Prefab ausgewählt");
         }
-        Debug.Log("Local; "+ transform.localPosition);
-        Debug.Log("world; "+ transform.position);
-        Debug.Log("Trans; "+ transform);
-        var go = Instantiate(selectedPrefab ,transform.position, Quaternion.Euler(-90f, 180f, 0f));
+        var go = Instantiate(selectedPrefab, t.position, t.rotation);
         return go.GetComponent<Maske>();
     }
 
@@ -99,14 +130,24 @@ public class GameController : MonoBehaviour
     }
     void Update()
     {
-        if (roundTime>0)
+        if (!_roundRunning) return;
+
+        _time += Time.deltaTime;
+        if(_time <= 6) return;
+        _time = 0;
+        
+        //Kampf-Tick: beide Seiten lassen angreifen
+        for (int i = 0; i < Masken.Count; i++)
         {
-            //Dinge passieren!
-            
-        } 
+            Debug.Log("Maske: Andgriff!");
+            Masken[i].Attacke();   
+        }
 
-
-
+        for (int i = 0; i < Gegner.Count; i++)
+         {
+            Debug.Log("Gegner: Andgriff!");
+            Gegner[i].Attacke();   
+        }
     }
 
 
