@@ -3507,6 +3507,7 @@ MonoBehaviour:
   "k\xE4mpfer": {fileID: 374266905628740879, guid: 8c85c553fae2a0e4e9771c554aa1af11, type: 3}
   magier: {fileID: 4348169342016407291, guid: 722a3af7d740d754a83f2dbbc228dbfc, type: 3}
   selectedPrefab: {fileID: 0}
+  roundTime: 0
 --- !u!4 &753543690
 Transform:
   m_ObjectHideFlags: 0
