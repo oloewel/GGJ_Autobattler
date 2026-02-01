@@ -126,6 +126,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GegnerPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5866666021909216657, guid: 71d84cda79096f5438fe02be85650975, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: cf12cd01fcce34848a162f7a892ec4d3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
