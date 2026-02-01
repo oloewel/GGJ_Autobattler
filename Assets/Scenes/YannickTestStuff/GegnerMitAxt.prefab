@@ -124,7 +124,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fac6cf610f4e5d1468265b70d241a604, type: 3}
       propertyPath: m_Name
-      value: Neutral Idle
+      value: GegnerMitAxt
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -156,9 +156,9 @@ Animation:
   m_GameObject: {fileID: 7887263114770298035}
   m_Enabled: 1
   serializedVersion: 4
-  m_Animation: {fileID: -203655887218126122, guid: fac6cf610f4e5d1468265b70d241a604, type: 3}
+  m_Animation: {fileID: -203655887218126122, guid: 678fb14a81f64b24cacad7ddd4dc5322, type: 3}
   m_Animations:
-  - {fileID: -203655887218126122, guid: fac6cf610f4e5d1468265b70d241a604, type: 3}
+  - {fileID: -203655887218126122, guid: 678fb14a81f64b24cacad7ddd4dc5322, type: 3}
   m_WrapMode: 0
   m_PlayAutomatically: 1
   m_AnimatePhysics: 0
