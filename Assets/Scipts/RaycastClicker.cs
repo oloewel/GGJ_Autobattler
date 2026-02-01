@@ -22,8 +22,10 @@ public class RaycastClicker : MonoBehaviour
         if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, hitLayers))
         {
             var clickable = hit.collider.GetComponentInParent<Platzierungen>();
-            if (clickable != null)
+            if (clickable != null && clickable.isSelectable && clickable.selected)
+            {
                 clickable.Spawn();
+            }
         }
     }
 }

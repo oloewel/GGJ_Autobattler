@@ -8,20 +8,21 @@ public class Platzierungen : MonoBehaviour
     [SerializeField] private Color normalColor = Color.white;
     [SerializeField] private Color selectedColor = Color.red;
 
+    public virtual bool isSelectable => true;
+
     private Renderer rend;
     private Maske currentMaske;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         rend = GetComponent<Renderer>();
         GameController.Instance.addToScene(this);
-
     }
 
-    public void Spawn()
+    public void Spawn(GameObject gameObject = null)
     {
-        if(!selected || currentMaske != null) return;
-        currentMaske = GameController.Instance.Spawn(transform);
+        if(currentMaske != null) return;
+        currentMaske = GameController.Instance.Spawn(transform, gameObject);
         selected = false;
         rend.material.color = normalColor;
     }
