@@ -18,7 +18,10 @@ public class Platzierungen : MonoBehaviour
         rend = GetComponent<Renderer>();
         GameController.Instance.addToScene(this);
     }
-
+    public void OnGamestart()
+    {
+        gameObject.GetComponent<MeshRenderer>().enabled = false;
+    }
     public void Spawn(GameObject gameObject = null)
     {
         if(currentMaske != null) return;

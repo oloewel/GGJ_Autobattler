@@ -1,6 +1,8 @@
+using System;
 using System.Collections.Generic;
 using UnityEditor.PackageManager;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class GameController : MonoBehaviour
     public List<MaskenButton> MaskenButtons {get; private set; }= new();
     public List<Maske> Masken {get; private set; }= new();
     public List<Maske> Gegner {get; private set; }= new();
+    public GameObject panlWin;
+    public GameObject panlLose;
 
     private int level = 1;
 
@@ -18,7 +22,8 @@ public class GameController : MonoBehaviour
     public GameObject tank;
     public GameObject kämpfer;
     public GameObject magier;
-    public GameObject gegner;
+
+    public List<GameObject> gegner;
     public GameObject selectedPrefab;
     
     private float _delta = 0;
@@ -27,9 +32,17 @@ public class GameController : MonoBehaviour
 
     public void StartRound()
     {
+        if(_roundRunning) return;
+
+
         GegnerPlatzierungen.ForEach((e) =>
         {
-            e.Spawn(gegner);
+            e.OnGamestart();
+            e.Spawn(gegner[UnityEngine.Random.Range(0, gegner.Count)]);
+        });
+        Platzierungen.ForEach((e) =>
+        {
+            e.OnGamestart();
         });
 
         if (Masken.Count == 0)
@@ -41,17 +54,25 @@ public class GameController : MonoBehaviour
         Debug.Log("Runde gestartet!");
     }
 
+    public void Reset()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
     public void Check()
     {
+        Debug.Log("Check aufruf");
         if (Gegner.Count == 0)
         {
             _roundRunning = false;
             Debug.Log("Spieler gewinnen!");
+            panlWin.SetActive(true);
+
         }
         else if (Masken.Count == 0)
         {
             _roundRunning = false;
             Debug.Log("Gegner gewinnen!");
+            panlLose.SetActive(true);
         }
     }
 

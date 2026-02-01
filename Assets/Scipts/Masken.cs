@@ -44,10 +44,9 @@ public class Maske : MonoBehaviour
     {
 
         Debug.Log("STERBEN!");
-        GameController.Instance.Check();
         GameController.Instance.removeFromScene(this);
         Destroy(gameObject);
-        
+        GameController.Instance.Check();
     }
 
 

@@ -88,8 +88,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24d728e139191264aac1f92c69000609, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Maske
-  lP: 100
-  sPS: 10
+  lP: 80
+  sPS: 15
   geschw: 1
   isGegner: 0
 --- !u!4 &1172462983642173334 stripped
